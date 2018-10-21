@@ -1,0 +1,27 @@
+<md-card>
+  <md-card-content>
+
+      <div class="chart-header">Efficient Portfolios</div>
+
+      <div class="chart-controls">
+
+        <div id="chart-control">
+
+            <span class="switch-off-text" mdTooltip="Net Asset Value ($)">NAV</span>
+
+        </div>
+
+
+
+      </div>
+
+      <div class="d3-chart" #chart>
+
+        <div class="loader" [style.display]="dynamicStyles.loaderDisplay">
+          Loading Efficient Portfolios data...
+        </div>
+
+      </div>
+
+  </md-card-content>
+</md-card>

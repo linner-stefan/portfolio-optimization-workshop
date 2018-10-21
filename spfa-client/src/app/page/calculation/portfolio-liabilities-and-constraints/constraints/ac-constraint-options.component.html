@@ -1,0 +1,11 @@
+<span>{{ ( chartData.navSum *assetClassGroup.metadata.allocationSum ) | billion }}</span>
+<span>{{ assetClassGroup.metadata.allocationSum | perc }}</span>
+<ng-container *ngIf="assetClassGroup.allocationConstraint.aggregation">
+
+  <i class="fa fa-link" aria-hidden="true" (click)="toggleAggregate($event)" *ngIf="assetClassGroup.allocationConstraint.userAdjustedAggregation; else brokenAggregation"></i>
+  <ng-template #brokenAggregation>
+    <i class="fa fa-chain-broken" aria-hidden="true" (click)="toggleAggregate($event)"></i>
+  </ng-template>
+
+</ng-container>
+<i class="fa fa-exclamation-triangle" aria-hidden="true" *ngIf="isBreaching"></i>

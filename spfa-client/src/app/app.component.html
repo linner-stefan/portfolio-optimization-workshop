@@ -1,0 +1,12 @@
+<div class="spa-header">
+
+  <div class="user">
+    <div class="name">{{ user ? user.id : '' }}</div>
+    <div class="avatar" *ngIf="user"><img [src]="avatarUrl" /></div>
+  </div>
+
+  <div class="title pointer"><span>Systematic Portfolio Analyzer</span></div>
+
+</div>
+
+<router-outlet></router-outlet>

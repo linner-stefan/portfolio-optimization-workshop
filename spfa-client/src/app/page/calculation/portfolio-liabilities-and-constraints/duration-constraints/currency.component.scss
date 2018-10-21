@@ -1,0 +1,54 @@
+@import '../../../../theme';
+
+$slider-height: 24px;
+
+.currency-slider-wrapper {
+
+  padding: 2em 1em;
+}
+
+.currency-slider {
+
+  position: relative;
+  height: $slider-height;
+  width: 100%;
+
+  .line {
+
+    width: 100%;
+    height: 4px;
+    background-color: #AFBDBD;
+    border-radius: 2px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+  }
+
+  .total {
+
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    margin-left: -1px;
+    background-color: $red-gradient-left;
+
+    .total-perc-flag {
+
+      position: absolute;
+      top: -20px;
+      left: -13px;
+      font-size: 0.75em;
+      color: gray;
+    }
+
+    .total-flag {
+
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      font-size: 0.75em;
+      color: gray;
+    }
+  }
+}

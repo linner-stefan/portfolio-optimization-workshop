@@ -1,0 +1,6 @@
+Adjust User-defined Portfolio allocations to:
+<md-select #select color="primary" placeholder="Portfolio" [(ngModel)]="selectedPortfolio" (change)="selectPortfolio()">
+  <md-option *ngFor="let portfolio of portfolios"
+             [value]="portfolio">{{portfolio.label}}
+  </md-option>
+</md-select>

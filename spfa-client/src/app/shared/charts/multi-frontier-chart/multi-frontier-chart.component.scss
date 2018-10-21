@@ -1,0 +1,59 @@
+@import '../../../theme';
+
+multi-frontier-chart {
+
+  .mouse-capture {
+    pointer-events: all;
+  }
+
+  .cursor-none {
+    cursor: none;
+  }
+
+  .line {
+    fill: none;
+    stroke-width: 2px;
+  }
+
+  .individual-point {
+    fill: silver;
+    opacity: 0.8;
+  }
+
+  path.vertical-line {
+    stroke-width: 2px;
+  }
+
+  .vertical-selector {
+    stroke: $red-gradient-left;
+  }
+
+  .vertical-selector-circle {
+    fill: $red-gradient-left;
+  }
+
+  .anchor-circle {
+    fill: $red-gradient-left;
+    stroke: black;
+    stroke-width: 2px;
+  }
+
+  .chart-legends {
+    text-align: right;
+    margin-top: 32px;
+    .legend {
+      text-align: center;
+    }
+  }
+
+  .chart-controls-frontier {
+    margin-top: 0.5em;
+  }
+
+  md-select {
+    width: 100%;
+    margin: 2em 0 1em;
+  }
+
+
+}

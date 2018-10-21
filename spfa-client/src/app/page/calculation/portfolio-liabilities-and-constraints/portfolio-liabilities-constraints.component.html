@@ -1,0 +1,45 @@
+<div class="portfolio-liabilities-constraints">
+  <div class="two-panes">
+    <div class="left-pane">
+
+      <div class="charts">
+
+        <div class="chart">
+          <multi-frontier-chart [singleFrontier]="true"
+                                [onInterpolatedPortfolio]="onInterpolatedPortfolio"
+                                [onOptimalTrackingErrorChange]="onOptimalTrackingErrorChange"
+                                [onSSTRatioChange]="onSSTRatioChange">
+          </multi-frontier-chart>
+        </div>
+
+        <div class="chart">
+          <portfolios-chart
+            [efficientPortfolios]="efficientPortfolios"
+            [individualPortfolios]="individualPortfolios"
+            [onInterpolatedPortfolio]="onInterpolatedPortfolio"
+            [calculatesOptimal]="true"
+            [onOptimizeAllocations]="onOptimizeAllocations"
+            [onOptimalPortfolioCalculated]="onOptimalPortfolioCalculated"
+            [onUserDefinedPortfolioRefresh]="onUserDefinedPortfolioRefresh">
+
+          </portfolios-chart>
+        </div>
+
+      </div>
+
+    </div><div class="right-pane">
+
+      <md-tab-group selectedIndex="0">
+        <md-tab label="Pillar 4">
+          <ac-constraint-chart
+            [onOptimizeAllocations]="onOptimizeAllocations"
+            [onOptimalPortfolioCalculated]="onOptimalPortfolioCalculated"
+            [onUserDefinedPortfolioRefresh]="onUserDefinedPortfolioRefresh">
+
+          </ac-constraint-chart>
+        </md-tab>
+      </md-tab-group>
+
+    </div>
+  </div>
+</div>

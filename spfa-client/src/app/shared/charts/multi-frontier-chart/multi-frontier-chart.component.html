@@ -1,0 +1,22 @@
+<md-card>
+  <md-card-content>
+    <div class="chart-header">Efficient frontier<ng-container *ngIf="!singleFrontier">s</ng-container></div>
+
+    <div class="chart-controls-frontier row">
+
+        <div class="chart-legends col-xl-6">
+
+        </div>
+
+    </div>
+
+    <div class="d3-chart" #chart>
+
+      <div class="loader" [style.display]="dynamicStyles.loaderDisplay">
+        Loading Efficient Frontier data...
+      </div>
+
+    </div>
+
+  </md-card-content>
+</md-card>

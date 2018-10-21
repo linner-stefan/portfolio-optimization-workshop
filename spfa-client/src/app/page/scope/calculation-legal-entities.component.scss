@@ -1,0 +1,30 @@
+.legal-entities-header {
+
+  text-align: center;
+  font-size: 1.2em;
+  color: #79BFFA;
+  padding: 1em;
+
+  span {
+
+    color: #297FCA;
+    font-weight: bold;
+  }
+}
+
+.legal-entities {
+
+  color: #297FCA;
+  background-color: #C1E0FB;
+  padding: 1em;
+}
+
+.legal-entity:after {
+
+  content: ', ';
+}
+
+.legal-entity:last-child:after {
+
+  content: '';
+}

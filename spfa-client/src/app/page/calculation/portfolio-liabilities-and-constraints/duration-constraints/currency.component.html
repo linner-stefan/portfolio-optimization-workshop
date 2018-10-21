@@ -1,0 +1,13 @@
+<div class="currency-slider-wrapper">
+  <div class="currency-slider">
+    <div class="line"></div>
+    <div class="total" [style.left.%]="left">
+      <div class="total-perc-flag">
+        {{ totalPerc | perc }}
+      </div>
+      <div class="total-flag">
+        {{ currencyInfo.total | billion : 1 }}
+      </div>
+    </div>
+  </div>
+</div>

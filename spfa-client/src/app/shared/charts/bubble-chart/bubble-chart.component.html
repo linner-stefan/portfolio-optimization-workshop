@@ -1,0 +1,46 @@
+<md-card>
+
+  <md-card-content>
+
+    <div class="chart-header">{{ typeConfig.title }}</div>
+
+    <div class="chart-controls">
+
+      <div id="chart-control">
+        <ng-container *ngIf="typeConfig.type === typeEnum.AcViews">
+            <span class="switch-off-text" (click)="slideToggle.checked = false; onChangeRadius(false)">Contribution to Risk</span><!--
+          --><md-slide-toggle #slideToggle color="primary" (change)="onChangeRadius($event.checked)">
+              <span mdTooltip="Net Asset Value ($)" class="switch-on-text">NAV</span>
+            </md-slide-toggle>
+        </ng-container>
+
+      </div>
+
+
+
+      <button md-raised-button (click)="onCollapseAll()">
+        Collapse and Show All
+      </button>
+
+    </div>
+
+    <em>right click a circle to hide</em>
+
+    <div>
+      <div class="chart-overlay" [style.display]="dynamicStyles.nothingToDisplay">
+        <div class="wrapper">
+          {{typeConfig.nothingToDisplayMessage}}
+        </div>
+      </div>
+    </div>
+
+    <div class="d3-chart" #chart>
+
+      <div class="loader" [style.display]="dynamicStyles.loaderDisplay">
+        Loading Bubble Chart data...
+      </div>
+
+    </div>
+
+  </md-card-content>
+</md-card>

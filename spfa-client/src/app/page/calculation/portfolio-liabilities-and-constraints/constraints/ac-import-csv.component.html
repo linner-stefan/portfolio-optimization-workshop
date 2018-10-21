@@ -1,0 +1,18 @@
+<div md-dialog-title class="legal-entities-header"><span>Upload your CSV</span></div>
+<md-dialog-content [style.padding-bottom.px]="10">
+
+  <upload-csv
+    [apiUrl]="'/api/csv/'+calculation.id+'/ac-import/'"
+    [id]="'calculation.id'"
+    [title]="'Asset Classes'"
+    [uploadHistory]="false"
+    (onStart)="onStart()"
+    (onSuccess)="onSuccess()"
+    (onFailure)="onFail()">
+
+  </upload-csv>
+
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button md-dialog-close>Close</button>
+</md-dialog-actions>

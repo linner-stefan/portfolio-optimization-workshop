@@ -1,0 +1,74 @@
+<md-card class="rfg-first-level pointer" [class.expanded]="!riskFactorGroup.metadata.spreadLevelCollapsed" (click)="collapse(riskFactorGroup)">
+  <md-card-content>
+
+    <div class="row">
+      <div class="rfg-summary col-lg-8">
+        <div class="rfg-name">{{ riskFactorGroup.name }}</div>
+        <div class="rfg-categories">{{ riskFactorGroup.subGroups.length }} sub-categories</div>
+      </div>
+      <div class="rfg-options col-lg-4">
+        <span class="fa fa-2x chevron" [class.fa-chevron-down]="riskFactorGroup.metadata.spreadLevelCollapsed" [class.fa-chevron-up]="!riskFactorGroup.metadata.spreadLevelCollapsed" aria-hidden="true"></span>
+      </div>
+    </div>
+
+  </md-card-content>
+</md-card>
+
+<ng-container *ngIf="!riskFactorGroup.metadata.spreadLevelCollapsed">
+
+  <div class="rfg-second-level-list">
+    <div class="up"></div>
+
+    <ng-container *ngFor="let rfg2 of riskFactorGroup.subGroups">
+
+      <md-card class="rfg-second-level pointer" [class.expanded]="!rfg2.metadata.spreadLevelCollapsed" (click)="collapse(rfg2)">
+        <md-card-content>
+
+          <div class="row">
+            <div class="rfg-name col-lg-8">{{ rfg2.name}}</div>
+            <div class="rfg-options col-lg-4">
+              <!--<span class="rfg-subgroups">{{ rfg2.subGroups.length }}</span>-->
+              <span class="fa chevron" [class.fa-chevron-down]="rfg2.metadata.spreadLevelCollapsed" [class.fa-chevron-up]="!rfg2.metadata.spreadLevelCollapsed" aria-hidden="true"></span>
+            </div>
+          </div>
+
+        </md-card-content>
+      </md-card>
+
+      <ng-container *ngIf="!rfg2.metadata.spreadLevelCollapsed">
+
+        <div class="rfg-third-level-list">
+          <div class="up"></div>
+
+          <ng-container *ngFor="let rfg3 of rfg2.subGroups">
+
+            <md-card class="rfg-third-level">
+              <md-card-content>
+
+                <div class="row">
+                  <div class="rfg-name col-lg-8">{{ rfg3.name}}</div>
+                  <div class="rfg-options col-lg-4">
+                    <i class="fa fa-undo pointer" aria-hidden="true" mdTooltip="Undo changes to this risk factor" (click)="undo( rfg3.riskFactor )"></i>
+                  </div>
+                </div>
+
+              </md-card-content>
+            </md-card>
+
+            <md-card class="rf-spread-level"><!--*ngIf="!rfg3.metadata.spreadLevelCollapsed"-->
+              <md-card-content>
+
+                <rf-spread-level [riskFactor]="rfg3.riskFactor" [chartData]="chartData"></rf-spread-level>
+
+              </md-card-content>
+            </md-card>
+
+          </ng-container>
+        </div>
+
+      </ng-container>
+
+    </ng-container>
+  </div>
+
+</ng-container>

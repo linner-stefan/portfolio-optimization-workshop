@@ -1,0 +1,55 @@
+@import "../../../theme";
+
+app-waterfall-chart {
+  .bar {
+    cursor: default;
+    &.total {
+      rect {
+        fill: $blue-gradient-left;
+      }
+    }
+    &.positive rect {
+      fill: $green-gradient-left;
+    }
+    &.negative rect {
+      fill: $red-gradient-left;
+    }
+  }
+
+  .bar line.connector {
+    stroke: grey;
+    stroke-dasharray: 3;
+
+    &.total {
+      display: none;
+    }
+  }
+
+  .axis text {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .zero-line {
+    stroke-width: 1px;
+    stroke: #BBB;
+  }
+
+  .background {
+    fill: none;
+    pointer-events: visible;
+  }
+
+  .zoom-in {
+    cursor: url("/assets/icons/ic_zoom_in_black_24px.cur"), pointer;    // .CUR file without coordinates due to IE 11
+  }
+  .zoom-out {
+    cursor: url("/assets/icons/ic_zoom_out_black_24px.cur"), default;   // .CUR file without coordinates due to IE 11
+  }
+}

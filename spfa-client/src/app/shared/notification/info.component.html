@@ -1,0 +1,13 @@
+<div class="notification info">
+  <md-dialog-content>
+    <div class="title">{{ title }}</div>
+    <div class="text" [innerHTML]="text"></div>
+  </md-dialog-content>
+  <read-more *ngIf="stackTrace">
+    <div *ngIf="rootCause" [innerHTML]="rootCause"></div>
+    <div [innerHTML]="stackTrace"></div>
+  </read-more>
+</div>
+<md-dialog-actions [style.margin-top.em]="1">
+  <button md-button md-dialog-close>OK</button>
+</md-dialog-actions>

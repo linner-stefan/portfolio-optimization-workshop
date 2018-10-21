@@ -1,0 +1,280 @@
+/* Fonts */
+
+@font-face {
+  font-family: 'SansOT';
+  src: url('assets/fonts/sansot-regular-webfont.woff2') format('woff2'),
+  url('assets/fonts/sansot-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SansOT';
+  src: url('assets/fonts/sansot-bold-webfont.woff2') format('woff2'),
+  url('assets/fonts/sansot-bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+
+}
+@font-face {
+  font-family: 'SansOT';
+  src: url('assets/fonts/sansot-bolditalic-webfont.woff2') format('woff2'),
+  url('assets/fonts/sansot-bolditalic-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+
+}
+@font-face {
+  font-family: 'SansOT';
+  src: url('assets/fonts/sansot-italic-webfont.woff2') format('woff2'),
+  url('assets/fonts/sansot-italic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'SansOT';
+  src: url('assets/fonts/sansot-light-webfont.woff2') format('woff2'),
+  url('assets/fonts/sansot-light-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SansOT';
+  src: url('assets/fonts/sansot-lightitalic-webfont.woff2') format('woff2'),
+  url('assets/fonts/sansot-lightitalic-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+}
+
+.pointer {
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.forbidden {
+
+  cursor: not-allowed;
+}
+
+.display-none {
+  display: none !important;
+}
+
+
+input::-ms-clear {
+  display: none;
+}
+
+
+
+.cell {
+
+  width: 100%;
+  height: 100%;
+}
+
+/*
+html {
+
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: SansOT, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  padding: 0;
+  margin: 0;
+  background-color:rgba(242, 242, 242, 1);
+}
+
+#header {
+
+  background-color: #ffffff;
+  background-image: url('_logo.png');
+  background-repeat: no-repeat;
+  background-position: left 20px center;
+  background-size: 150px 36px;
+
+  height:80px;
+
+  padding:0 12px;
+  border-bottom: 2px solid rgba(15, 77, 188, 1);
+
+  overflow: hidden;
+}
+
+#title {
+
+  margin-left: 240px;
+  padding-top:20px;
+  font-size:2em;
+  color:black;
+}
+
+#account {
+
+  margin-top:24px;
+
+  float:right;
+  color:black;
+}
+
+#user {
+
+  margin-right:52px;
+  margin-top:8px;
+}
+
+nav {
+  background-color: #ffffff;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.349019607843137);
+  position:relative;
+}
+
+nav .nav-tabs {
+
+}
+
+nav .nav-tabs a {
+
+  border: none;
+  border-radius: 0;
+  color: black;
+  margin-right: 0;
+  cursor: pointer;
+}
+
+nav .nav-tabs .page-active a {
+
+  color:white;
+  background-color: rgba(15, 77, 188, 1);
+}
+
+nav .nav-tabs a:hover {
+
+  background-color: rgba(15, 77, 188, 1);
+  color:white;
+}
+
+.body {
+
+  padding-bottom:40px !important;
+}
+
+.container-fluid {
+
+  padding:0;
+  margin:0;
+}
+
+.well {
+
+  margin-bottom:0;
+  border:0;
+  background-color: white;
+}
+
+.vertical-well {
+
+  padding:12px 0;
+  margin:0;
+  background-color: white;
+}
+
+.row {
+
+  background-color:#ffffff;
+  margin-left:0;
+  margin-right:0;
+}
+
+.col {
+
+  padding: 4px;
+}
+
+.form-group label {
+
+  font-weight: normal;
+}
+
+.card {
+
+  box-shadow: grey 0px 7px 20px -2px
+}
+
+select, select.form-control {
+
+  border:1px solid rgba(15, 77, 188, 1);
+  border-radius:0;
+  color: rgb(15, 77, 188);
+  width: auto;
+}
+
+input[type=text], input[type=text].form-control,
+input[type=number], input[type=number].form-control {
+
+  border: 1px solid rgb(15, 77, 188);
+  border-radius: 0;
+}
+
+textarea, textarea.form-control {
+
+  border: 1px solid rgb(15, 77, 188);
+  border-radius: 0;
+}
+
+button, button[type=button] {
+
+  border:0;
+  border-radius:0;
+}
+
+.btn-primary {
+
+  background-color:rgba(15, 77, 188, 1);
+  color:#ffffff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:hover,
+.btn-primary:active:focus {
+
+  background-color:#0b3b8e;
+}
+
+.btn-border,
+.btn-border:hover,
+.btn-border:focus,
+.btn-border:active,
+.btn-border:active:hover,
+.btn-border:active:focus {
+
+  background-color: #ffffff;
+  border:1px solid rgba(15, 77, 188, 1) !important;
+  color: rgba(15, 77, 188, 1);
+}
+
+#footer {
+
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  background-color: #ffffff;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.349019607843137);
+}
+
+#footer div {
+
+  padding:4px;
+}
+
+.pointer {
+
+  cursor: pointer;
+}
+*/

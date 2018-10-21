@@ -1,0 +1,25 @@
+@import '../../../theme';
+
+.line {
+  fill: none;
+  stroke: $blue-gradient-right;
+  stroke-width: 2px;
+}
+.vertical-line {
+  fill: none;
+  stroke-width: 2px;
+}
+.area {
+  fill: $green-gradient-left;
+}
+rect.animation-helper {
+  fill: white;
+  stroke-width: 0;
+}
+
+.vertical-line.expected-shortfall {
+  stroke: $red-gradient-left;
+}
+.vertical-line.stress-scenario-pl {
+  stroke: $green-gradient-left;
+}

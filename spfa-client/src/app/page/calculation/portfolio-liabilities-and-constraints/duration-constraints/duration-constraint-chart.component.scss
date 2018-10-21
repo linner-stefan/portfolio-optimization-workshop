@@ -1,0 +1,103 @@
+@import "../../../../theme";
+
+.duration-constraint-chart {
+
+  .duration-total {
+
+    padding: 2.5em;
+    background: linear-gradient( to right, $blue-gradient-left, $blue-gradient-right);
+
+    .name {
+
+      font-size: 1.5em;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #ffffff;
+    }
+  }
+
+  .duration-currency-list {
+
+    margin: 1em auto 0 auto;
+    width: 95%;
+    position: relative;
+
+    .up {
+
+      width: 0;
+      height: 0;
+      border: 0.75em solid transparent;
+      border-bottom-color: $blue-gradient-right;
+      position: absolute;
+      top: -1.5em;
+      right: 2em;
+    }
+
+    .duration-currency {
+
+      background-color: white;
+
+      .name {
+
+        font-size: 1.25em;
+        font-weight: bold;
+        color: $main-color
+      }
+
+      &.expanded {
+
+        background: linear-gradient( to right, $blue-gradient-left, $blue-gradient-right);
+
+        .name {
+
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  .duration-time-frame-list {
+
+    margin: 1em auto;
+    width: 95%;
+    position: relative;
+
+    .up {
+
+      width: 0;
+      height: 0;
+      border: 0.75em solid transparent;
+      border-bottom-color: $blue-gradient-right;
+      position: absolute;
+      top: -1.5em;
+      right: 2em;
+    }
+
+    .duration-time-frame {
+
+      background-color: white;
+
+      .name {
+
+        font-weight: bold;
+        color: $main-color
+      }
+    }
+  }
+
+  .currency-sum-list {
+
+    .currency-sum {
+
+      margin-top: 1em;
+
+      .name {
+
+        font-size: 1.5em;
+        font-weight: bold;
+        color: $main-color
+      }
+    }
+  }
+
+}

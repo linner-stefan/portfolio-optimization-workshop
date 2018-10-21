@@ -1,0 +1,41 @@
+.h {
+
+  color: black;
+  font-weight: bold;
+
+  &.h-level-0 {
+
+    padding-left: 0px;
+  }
+
+  &.h-level-1 {
+
+    padding-left: 16px;
+  }
+
+  &.h-level-2 {
+
+    padding-left: 32px;
+  }
+
+  &.h-level-3 {
+
+    padding-left: 48px;
+  }
+
+  &.h-level-4 {
+
+    padding-left: 62px;
+  }
+
+  &.h-level-5 {
+
+    padding-left: 78px;
+  }
+
+  &.h-leaf {
+
+    font-weight: normal;
+    color: darkgray;
+  }
+}

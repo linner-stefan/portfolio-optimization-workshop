@@ -1,0 +1,141 @@
+@import "../../../../theme";
+
+.rfg-first-level {
+
+  padding: 2.5em;
+  background-color:#ffffff;
+
+  &.expanded {
+
+    background: linear-gradient( to right, $blue-gradient-left, $blue-gradient-right);
+
+    .rfg-summary .rfg-name {
+
+      color: #ffffff;
+    }
+  }
+
+  .rfg-summary {
+
+    .rfg-name {
+
+      font-size: 1.5em;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $main-color;
+    }
+
+    .rfg-categories {
+
+      color: $minor-color;
+    }
+  }
+
+  .rfg-options {
+
+    text-align: right;
+    color: $minor-color;
+  }
+}
+
+.rfg-second-level-list {
+
+  width: 95%;
+  margin: 1em auto 0 auto;
+  position: relative;
+
+  .up {
+
+    width: 0;
+    height: 0;
+    border: 0.75em solid transparent;
+    border-bottom-color: $blue-gradient-right;
+    position: absolute;
+    top: -1.5em;
+    right: 2em;
+  }
+
+}
+
+.rfg-second-level {
+
+  background-color:#ffffff;
+
+  &.expanded {
+
+    background: linear-gradient( to right, $blue-gradient-left, $blue-gradient-right);
+
+    .rfg-name {
+
+      color: #ffffff;
+    }
+  }
+
+  .rfg-name {
+
+    color: $main-color;
+    padding-left: 1em;
+    font-weight: bold;
+  }
+
+  .rfg-options {
+
+    text-align: right;
+
+    .chevron {
+
+      color: $minor-color;
+    }
+  }
+
+}
+
+.rfg-third-level-list {
+
+  width: 95%;
+  margin: 1em auto;
+  position: relative;
+
+  .up {
+
+    width: 0;
+    height: 0;
+    border: 0.75em solid transparent;
+    border-bottom-color: $blue-gradient-right;
+    position: absolute;
+    top: -1.5em;
+    right: 2em;
+  }
+
+}
+
+.rfg-third-level {
+
+  background: linear-gradient( to right, $blue-gradient-left, $blue-gradient-right);
+  color: #ffffff;
+
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  .rfg-name {
+
+    padding-left: 1em;
+    font-weight: bold;
+  }
+
+  .rfg-options {
+
+    text-align: right;
+  }
+
+}
+
+.rf-spread-level {
+
+  background-color:#ffffff;
+  color: $main-color;
+  margin: 0 auto;
+
+  padding-top: 1em;
+  padding-bottom: 1em;
+}

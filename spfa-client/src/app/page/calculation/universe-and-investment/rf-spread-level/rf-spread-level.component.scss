@@ -1,0 +1,162 @@
+@import "../../../../theme";
+
+$slider-height: 24px;
+
+.rf-spread-level-slider-wrapper {
+
+  padding: 1.5em 1em;
+  overflow: hidden;
+}
+
+.rf-spread-level-slider {
+
+  width: 100%;
+  height: $slider-height;
+  position: relative;
+  user-select: none;
+
+  .rf-line {
+
+    width: 100%;
+    height: 4px;
+    background-color: #AFBDBD;
+    border-radius:2px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+  }
+
+  .rf-market-data,
+  .rf-investment-strategy {
+
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    margin-left:-1px;
+  }
+
+  .rf-market-data {
+
+    background-color: $red-gradient-left;
+    cursor: e-resize;
+
+    .rf-market-data-flag {
+
+      position: absolute;
+      bottom: -20px;
+      left: -2px;
+      font-size: 0.75em;
+    }
+  }
+
+  .rf-investment-strategy {
+
+    background-color: $blue-gradient-left;
+
+    .rf-investment-strategy-flag {
+
+      position: absolute;
+      bottom: -20px;
+      left: -6px;
+      font-size: 0.75em;
+    }
+
+  }
+
+  .rf-adjusted-level {
+
+    background-color: #297FCA;
+    width: $slider-height;
+    height: $slider-height;
+    margin-top: -$slider-height /2;
+    margin-left: -$slider-height /2;
+    border-radius: $slider-height /2;
+    position: absolute;
+    top: 50%;
+    cursor: e-resize;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 28px;
+    background-image: url('/assets/icons/bars.svg');
+  }
+
+  .rf-adjusted-volatility {
+
+    height: 12px;
+    background-color: #82C0F9;
+    position: absolute;
+    top: 6px;
+  }
+
+  .rf-adjusted-volatility-left,
+  .rf-adjusted-volatility-right {
+
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: -4px;
+    cursor: e-resize;
+    background-color: #297FCA;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-image: url('/assets/icons/bars.svg');
+  }
+
+  .rf-adjusted-volatility-left {
+
+    left: -10px;
+  }
+
+  .rf-adjusted-volatility-right {
+
+    right: -10px;
+  }
+
+  .rf-adjusted-volatility-left-value,
+  .rf-adjusted-volatility-right-value,
+  .rf-adjusted-level-value {
+
+    font-weight: bold;
+    position: absolute;
+    top: -24px;
+    white-space: nowrap;
+  }
+
+  .rf-adjusted-volatility-left-value {
+
+    right:100%;
+  }
+
+  .rf-adjusted-volatility-right-value {
+
+    left:100%;
+  }
+
+  .rf-adjusted-level-value {
+
+    top: -18px;
+  }
+}
+
+.rf-spread-level-options {
+
+  margin-top: 1em;
+  color: #297FCA;
+}
+
+.rf-spread-level-editor {
+
+  margin-top: 1em;
+}
+
+.rf-mahalanobis-axis {
+
+  &.selected {
+
+    color: $green-gradient-center;
+  }
+}

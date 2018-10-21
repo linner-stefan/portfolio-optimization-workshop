@@ -1,0 +1,27 @@
+<div class="ac-liability-chart">
+
+  <div class="ac-liability-notifications">
+
+    <md-card class="ac-liability-notification" [class.warning]="!isHundred">
+      <div class="ac-liability-notification-inner">
+        <md-card-content>
+
+          <ng-container *ngIf="isHundred; else breached">
+            <b>User defined portfolio is 100%, {{ chartData.liabilitySum | billion }}</b>
+          </ng-container>
+
+          <ng-template #breached>
+            <b>User defined portfolio is {{ (liabilitySum /chartData.liabilitySum) | perc }}, {{ liabilitySum | billion }} of {{ chartData.liabilitySum | billion }}</b>
+          </ng-template>
+
+        </md-card-content>
+      </div>
+    </md-card>
+
+  </div>
+
+  <div class="ac-liability-hierarchy-wrapper" *ngFor="let assetClassGroup of assetClassGroups">
+    <ac-liability-hierarchy [assetClassGroup]="assetClassGroup" [chartData]="chartData"></ac-liability-hierarchy>
+  </div>
+
+</div>

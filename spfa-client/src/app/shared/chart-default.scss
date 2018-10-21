@@ -1,0 +1,160 @@
+@import 'variables';
+
+.d3-chart {
+
+  position: relative;
+  width: 100%;
+  height: $chart-height;
+  user-select: none;
+
+  .loader {
+    padding-top: 50px;
+    text-align: center;
+    font-style: italic;
+  }
+
+  .loader-matlab {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 50px;
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+
+  .axis path, .axis-grid path{
+    stroke: none;
+  }
+
+  .axis line {
+    stroke: none;
+  }
+
+  .axis-x-line, .axis-y-line {
+    stroke: #BBB !important;
+    stroke-width: 1px;
+  }
+
+  .axis-grid line {
+    stroke: #EEE;
+  }
+
+  .axis text {
+    fill: #777;
+    cursor: default;
+  }
+
+  .axis text.axis-label {
+    font-size: 12px;
+    fill: black;
+  }
+
+  .label {
+    text {
+      fill: black;
+      opacity: 0.6;
+      cursor: default;
+      font-size: 10px;
+      text-shadow: white 0.5px 0.5px;
+
+      transform: translateZ(0); // force hardware acceleration
+    }
+
+    // ChartForceLabels
+    .node {
+      stroke-width: 1.5px;
+      fill-opacity: 0.8;
+    }
+    .label circle {
+      opacity: 0;
+    }
+    line {
+      stroke: #555;
+      opacity: 0.3;
+    }
+  }
+  .label-curve{
+    font-weight: bold;
+  }
+
+  .polygons path {
+    fill: none;
+    stroke: #BBB;
+  }
+
+  circle {
+    pointer-events: all;
+  }
+
+  .plotArea, .label{
+    text {
+      font: 12px sans-serif;
+    }
+    text.value {
+      fill: white;
+      // text-shadow: 0 0 2px black, 1px 1px black;  // text-shadow doesn't work in IE11 on SVG text elements
+      text-shadow: 0 0 2px black;     // blurred outline at least for Chrome/FF
+    }
+    text.outline {
+      fill: black;
+      text-shadow: none;
+    }
+  }
+
+}
+
+.chart-overlay {
+  position: absolute;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  padding: inherit; // stack overflow - absolute-positioning-ignoring-padding-of-parent
+  height: $chart-height;
+  line-height: $chart-height;
+  vertical-align: middle;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.75);
+
+  .wrapper {
+    line-height: 150%;
+    display: inline-block;
+    width: 60%;
+  }
+}
+
+body div.chart-tooltip {
+  display:none;
+  position: absolute;
+  opacity: 0.9;
+  font-size: 12px;
+  padding: 2px 4px 1px 4px;
+  background: #e8e7e7;
+  border: 0px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.349019607843137);
+  pointer-events: none;
+}
+
+.chart-legends {
+
+  text-align: center;
+  font-size: 12px;
+
+  .legend {
+
+    display: inline-block;
+    padding: 0 1em;
+
+    .legend-color {
+
+      display: inline-block;
+      width: 0.75em;
+      height: 0.75em;
+    }
+
+    .legend-name {
+
+      display: inline-block;
+    }
+  }
+}

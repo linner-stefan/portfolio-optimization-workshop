@@ -1,0 +1,28 @@
+mahalanobis-chart {
+
+  /* Ellipse */
+  path {
+    stroke: #687C78;
+    stroke-width: 2px;
+    fill: none;
+    opacity: 0.8;
+  }
+
+  /* IS */
+  rect {
+    fill: #6C2B7E;
+    opacity: 0.8;
+  }
+
+  /* Starting position */
+  rect.equilibrium {
+    fill: #357A3B;
+    opacity: 0.8;
+  }
+
+  /* User defined */
+  circle {
+    fill: #4AADE4;
+    opacity: 0.8;
+  }
+}

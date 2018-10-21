@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="rf-spread-level-slider-wrapper col-lg-12">
+
+    <div class="rf-spread-level-slider" #slider>
+
+      <div class="rf-line"></div>
+      <div class="rf-adjusted-volatility" #volatility>
+        <div class="rf-adjusted-volatility-left-value">{{ formatValue( lowerVolatility ) }}</div>
+        <div class="rf-adjusted-volatility-right-value">{{ formatValue( upperVolatility ) }}</div>
+        <div class="rf-adjusted-volatility-left" (mousedown)="volatilityDragStart($event, true)"></div>
+        <div class="rf-adjusted-volatility-right" (mousedown)="volatilityDragStart($event, false)"></div>
+      </div>
+      <div class="rf-market-data" (mousedown)="marketDataDragStart($event)" #marketData>
+        <div class="rf-market-data-flag pointer" (click)="setToEqualibrium()" mdTooltip="Starting position - {{ formatValue(riskFactor.userAdjustedMarketData) }}">S</div>
+      </div>
+      <div class="rf-investment-strategy" #investmentStrategy *ngFor="let is of riskFactor.agregatedInvestmentViews" [style.left.%]="is.scaledPosition">
+        <div class="rf-investment-strategy-flag pointer" (click)="setAdjustedLevel(is)" mdTooltip="{{ is.yearLabel }} - {{ formatValue( is.agregatedValue ) }}">{{ is.yearLabel }}</div>
+      </div>
+      <div class="rf-adjusted-level" #level (mousedown)="levelDragStart($event)">
+        <div class="rf-adjusted-level-value">{{ formatValue( riskFactor.userAdjustedLevel ) }}</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<div class="rf-spread-level-options row">
+  <div class="col-lg-3 offset-lg-3">
+    <div class="rf-mahalanobis-axis" [class.selected]="selectedX" [class.pointer]="!selectedY" [class.forbidden]="selectedY" (click)="selectMahalanobisAxisX(riskFactor)">
+      <i class="fa fa-line-chart" aria-hidden="true"></i> Set as X
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="rf-mahalanobis-axis" [class.selected]="selectedY" [class.pointer]="!selectedX" [class.forbidden]="selectedX" (click)="selectMahalanobisAxisY(riskFactor)">
+      <i class="fa fa-line-chart" aria-hidden="true"></i> Set as Y
+    </div>
+  </div>
+</div>
+<div class="rf-spread-level-editor row">
+
+  <div class="col-lg-4 col-sm-4">
+    <md-input-container>
+      <input mdInput type="number" step="0.1" placeholder="Starting position ({{ riskFactor.unit == 'ABS' ? '%' : 'bps' }})" [ngModel]="getUserAdjustedMarketData" (ngModelChange)="changeMarketData($event)" />
+      <md-hint>Market: {{ formatValue( riskFactor.marketData ) }}</md-hint>
+    </md-input-container>
+  </div>
+
+  <div class="col-lg-4 col-sm-4">
+    <md-input-container>
+      <input mdInput type="number" step="0.1" placeholder="Custom Volatility ({{ riskFactor.unit == 'ABS' ? '%' : 'bps' }}" [ngModel]="getUserAdjustedVolatility" (ngModelChange)="changeVolatility($event)" />
+      <md-hint>Historical: {{getVolatility}}{{ riskFactor.unit == 'ABS' ? '%' : 'bps' }}</md-hint>
+    </md-input-container>
+  </div>
+
+  <div class="col-lg-4 col-sm-4">
+    <md-input-container>
+      <input mdInput type="number" step="0.1" placeholder="Custom Level ({{ riskFactor.unit == 'ABS' ? '%' : 'bps' }})" [ngModel]="getUserAdjustedLevel" (ngModelChange)="changeLevel($event)" />
+      <md-hint>{{ levelHint }}</md-hint>
+    </md-input-container>
+  </div>
+
+</div>

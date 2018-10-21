@@ -1,0 +1,97 @@
+<div class="acg-first-level-wrapper">
+  <md-card class="acg-first-level pointer" [class.expanded]="!assetClassGroup.metadata.liabilityCollapsed" (click)="collapse(assetClassGroup)">
+    <md-card-content>
+
+      <div class="ac-liability-info row">
+        <div class="acg-name col-lg-8">{{ assetClassGroup.name }}</div>
+        <div class="acg-options col-lg-4">
+          {{ assetClassGroup.metadata.liabilitySum | billion }} {{ (assetClassGroup.metadata.liabilitySum /chartData.liabilitySum) | perc }}
+          <span class="fa chevron" [class.fa-chevron-down]="assetClassGroup.metadata.liabilityCollapsed" [class.fa-chevron-up]="!assetClassGroup.metadata.liabilityCollapsed" aria-hidden="true"></span>
+        </div>
+      </div>
+    </md-card-content>
+  </md-card>
+  <md-card>
+    <md-card-content>
+
+      <ac-liability
+        [assetClassGroup]="assetClassGroup"
+        [chartData]="chartData">
+
+      </ac-liability>
+
+    </md-card-content>
+  </md-card>
+</div>
+
+<ng-container *ngIf="!assetClassGroup.metadata.liabilityCollapsed">
+
+  <div class="acg-second-level-list">
+    <div class="up"></div>
+
+    <ng-container *ngFor="let acg2 of assetClassGroup.subClasses">
+
+      <div class="acg-second-level-wrapper">
+        <md-card class="acg-second-level" [class.pointer]="!acg2.assetClass" [class.expanded]="!acg2.metadata.liabilityCollapsed" (click)="collapse(acg2)">
+          <md-card-content>
+
+            <div class="ac-liability-info row">
+              <div class="acg-name col-lg-8">{{ acg2.name }}</div>
+              <div class="acg-options col-lg-4">
+                {{ acg2.metadata.liabilitySum | billion }} {{ (acg2.metadata.liabilitySum /chartData.liabilitySum) | perc }}
+                <span class="fa chevron" [class.fa-chevron-down]="acg2.metadata.liabilityCollapsed" [class.fa-chevron-up]="!acg2.metadata.liabilityCollapsed" aria-hidden="true"></span>
+              </div>
+            </div>
+
+          </md-card-content>
+        </md-card>
+
+        <md-card>
+          <md-card-content>
+
+            <ac-liability
+              [assetClassGroup]="acg2"
+              [chartData]="chartData">
+
+            </ac-liability>
+
+          </md-card-content>
+        </md-card>
+      </div>
+
+      <ng-container *ngIf="!acg2.metadata.liabilityCollapsed">
+
+        <div class="acg-third-level-list">
+          <div class="up"></div>
+
+          <ng-container *ngFor="let acg3 of acg2.subClasses">
+
+            <div class="acg-third-level-wrapper">
+              <md-card class="acg-third-level">
+                <md-card-content>
+
+                  <div class="ac-liability-info row">
+                    <div class="acg-name col-lg-8">{{ acg3.name }}</div>
+                    <div class="acg-options col-lg-4">
+                      {{ acg3.metadata.liabilitySum | billion }} {{ (acg3.metadata.liabilitySum /chartData.liabilitySum) | perc }}
+                    </div>
+                  </div>
+
+                  <ac-liability
+                    [assetClassGroup]="acg3"
+                    [chartData]="chartData">
+
+                  </ac-liability>
+
+                </md-card-content>
+              </md-card>
+            </div>
+
+          </ng-container>
+
+        </div>
+      </ng-container>
+
+    </ng-container>
+  </div>
+</ng-container>

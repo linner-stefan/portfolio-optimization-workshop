@@ -1,0 +1,171 @@
+@import '../../../../theme';
+
+$slider-height: 24px;
+
+.ac-constraint {
+
+  margin-top:1em;
+
+  .ac-constraint-allocation-slider-wrapper {
+
+    padding: 0 1.5em;
+    padding-bottom: 1em;
+
+    &.disabled {
+
+      opacity: 0.5;
+    }
+  }
+
+  .ac-constraint-allocation-slider {
+
+    position: relative;
+    width: 100%;
+    height: $slider-height;
+    user-select: none;
+
+    .ac-line {
+
+      position: absolute;
+      left: 0;
+      top: 10px;
+
+      width: 100%;
+      height: 4px;
+      background-color: #C1E0FC;
+      border-radius: 2px;
+    }
+
+    .ac-handle {
+
+      cursor: e-resize;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 22px;
+      background-image: url('/assets/icons/bars.svg');
+      background-color: #4AADE4;
+    }
+
+    .ac-allocation {
+
+      position: absolute;
+      top: 0;
+      width: $slider-height;
+      height: $slider-height;
+      margin-left: -$slider-height /2;
+
+      border-radius: $slider-height /2;
+    }
+
+    .ac-allocation-no-adjustment {
+
+      position: absolute;
+      top: 4px;
+      height: 16px;
+      width: 16px;
+      margin-left: -8px;
+      border-radius: 8px;
+      background-color: white;
+      border: 2px solid #297FCA;
+    }
+
+    .ac-bounding {
+
+      position: absolute;
+      top: 6px;
+      height: 12px;
+
+      background-color: #82C0F9;
+
+      .ac-lower-bound-handle,
+      .ac-upper-bound-handle {
+
+        position: absolute;
+        top: -3px;
+        width: 18px;
+        height: 18px;
+      }
+
+      .ac-lower-bound-handle {
+
+        left: -18px;
+      }
+
+      .ac-upper-bound-handle {
+
+        right: -18px;
+      }
+
+      .ac-lower-bound-value,
+      .ac-upper-bound-value {
+
+        position: absolute;
+        top: -1.75em;
+      }
+
+      .ac-lower-bound-value {
+
+        left: -8px;
+      }
+
+      .ac-upper-bound-value {
+
+        right: -8px;
+      }
+
+    }
+
+    .drag-horizontal {
+
+      cursor: e-resize;
+    }
+
+    .ac-allocation-current,
+    .ac-allocation-optimal {
+
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      margin-left: -1px;
+    }
+
+    .ac-allocation-current {
+
+      background-color: #357A3B;
+    }
+
+    .ac-allocation-optimal {
+
+      background-color: $red-gradient-left;
+    }
+
+    .ac-allocation-current-flag,
+    .ac-allocation-optimal-flag{
+
+      position: absolute;
+      bottom: -20px;
+      left: -3px;
+      font-size: 0.75em;
+      color: gray;
+    }
+
+  }
+}
+
+.ac-constraint-editor {
+
+  margin-top: 1em;
+}
+
+.ac-aggregation {
+
+  font-size:1.5em;
+  color: rgba(15, 77, 188, 1);
+}
+
+.ac-violation {
+
+  font-size:1.5em;
+  color:#e7a3a3;
+}

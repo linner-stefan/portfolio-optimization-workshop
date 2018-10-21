@@ -1,0 +1,106 @@
+/* original uncompiled SCSS file for radio button */
+/* uncomment following import statement */
+
+//@import "compass/css3";
+
+@function get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+$color-checked: #0f4dbc;
+$input: (
+  'size': 24px,
+  'margin-right': 10px,
+  'color': (
+    'checked': $color-checked,
+    'unchecked': $color-checked
+  ),
+  'box-shadow': 0 0 0 1px $color-checked
+);
+
+$ripple: (
+  'position': get($input, 'size') - 11px,
+  'size': get($input, 'size') * 1,
+  'color': rgba( get($input, 'color','checked') , .1)
+);
+
+@include keyframes(ripple) {
+  5%, 100% { opacity: 0; }
+  5% { opacity: 1; }
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+%radio-x {
+  content: 'X';
+}
+
+%radio-y {
+  content: 'Y';
+  //text-indent: get($input, 'size') / 4 + 0.5px;
+}
+
+input[type="radio"] + label {
+  position: relative;
+  display: inline-block;
+  line-height: get($input, 'size');
+  font-weight: normal;
+  cursor: pointer;
+  padding-left: (get($input, 'size') + get($input, 'margin-right'));
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    @include transition(all .3s ease);
+  }
+  &:before {
+    top: 0;
+    left: 0;
+    line-height: get($input, 'size') + 1px;
+    white-space: pre;
+    text-indent: get($input, 'size') / 4 + 1.8px;
+    width: get($input, 'size');
+    height: get($input, 'size');
+    color: rgba(get($input, 'color', 'checked'), 0);
+    //background: get($input, 'color', 'checked');
+    @include box-shadow( get($input, 'box-shadow') );
+  }
+  &.radio-x:before {
+    @extend %radio-x;
+  }
+  &.radio-y:before {
+    @extend %radio-y;
+  }
+  &:after {
+    top: 49%;
+    left: get($ripple, 'position') - 1px;
+    width: get($input, 'size');
+    height: get($input, 'size');
+    opacity: 0;
+    @include box-shadow(0 0 0 0 get($ripple, 'color'));
+    @include transform(translate(-50%, -50%));
+  }
+}
+
+input[type="radio"]:checked + label {
+  &:after {
+    @include box-shadow(0 0 0 get($ripple, 'size')/2 get($ripple, 'color'));
+    @include animation(ripple 1s none);
+  }
+  &:before {
+    color: rgba(get($input, 'color', 'checked'), 1);
+    @include box-shadow( inset 0 1px 1px rgba(0,0,0,.075), get($input, 'box-shadow'), 0 0 10px rgba(102,175,233,.9));
+  }
+
+}
+
+input[type="radio"]:not(:checked) + label:hover{
+  &:before {
+    color: rgba(get($input, 'color', 'checked'), .5);
+  }
+}

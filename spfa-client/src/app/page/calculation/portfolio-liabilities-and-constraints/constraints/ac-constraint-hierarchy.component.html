@@ -1,0 +1,100 @@
+<div class="acg-first-level-wrapper">
+  <md-card class="acg-first-level pointer" [class.expanded]="!assetClassGroup.metadata.constraintCollapsed">
+    <md-card-content>
+      <div class="ac-constraint-info row">
+        <div class="acg-name col-lg-6">{{ assetClassGroup.name }}</div>
+        <div class="acg-options col-lg-6">
+<!--
+          <ac-constraint-options [assetClassGroup]="assetClassGroup" [chartData]="chartData"></ac-constraint-options>
+-->
+        </div>
+      </div>
+    </md-card-content>
+  </md-card>
+
+  <md-card>
+    <md-card-content>
+
+      <ac-constraint
+        [assetClassGroup]="assetClassGroup"
+        [chartData]="chartData">
+
+      </ac-constraint>
+
+    </md-card-content>
+  </md-card>
+</div>
+
+<ng-container *ngIf="!assetClassGroup.metadata.constraintCollapsed">
+
+  <div class="acg-second-level-list">
+    <div class="up"></div>
+
+    <ng-container *ngFor="let acg2 of assetClassGroup.subClasses">
+
+      <div class="acg-second-level-wrapper">
+        <md-card class="acg-second-level" [class.pointer]="!acg2.assetClass" [class.expanded]="!acg2.metadata.constraintCollapsed" (click)="collapse(acg2)">
+          <md-card-content>
+
+            <div class="ac-constraint-info row">
+              <div class="acg-name col-lg-6">{{ acg2.name}}</div>
+              <div class="acg-options col-lg-6">
+<!--
+                <ac-constraint-options [assetClassGroup]="acg2" [chartData]="chartData"></ac-constraint-options>
+-->
+              </div>
+            </div>
+
+          </md-card-content>
+        </md-card>
+        <md-card>
+          <md-card-content>
+
+            <ac-constraint
+              [assetClassGroup]="acg2"
+              [chartData]="chartData">
+
+            </ac-constraint>
+
+          </md-card-content>
+        </md-card>
+      </div>
+
+      <ng-container *ngIf="!acg2.metadata.constraintCollapsed">
+
+        <div class="acg-third-level-list">
+          <div class="up"></div>
+
+          <ng-container *ngFor="let acg3 of acg2.subClasses">
+
+            <div class="acg-third-level-wrapper">
+              <md-card class="acg-third-level">
+                <md-card-content>
+
+                  <div class="ac-constraint-info row">
+                    <div class="acg-name col-lg-6">{{ acg3.name}}</div>
+                    <div class="acg-options col-lg-6">
+<!--
+                      <ac-constraint-options [assetClassGroup]="acg3" [chartData]="chartData"></ac-constraint-options>
+-->
+                    </div>
+                  </div>
+
+                  <ac-constraint [assetClassGroup]="acg3"
+                                 [chartData]="chartData">
+
+                  </ac-constraint>
+
+                </md-card-content>
+              </md-card>
+            </div>
+
+          </ng-container>
+
+        </div>
+      </ng-container>
+
+    </ng-container>
+
+  </div>
+</ng-container>

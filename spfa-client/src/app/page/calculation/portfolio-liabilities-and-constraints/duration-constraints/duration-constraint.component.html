@@ -1,0 +1,70 @@
+<div class="duration-constraint-slider-wrapper">
+  <div class="duration-constraint-slider" #slider>
+    <div class="line"></div>
+
+    <div class="bounding" #bounding>
+      <div class="lowerBound" (mousedown)="dragBounding($event, true)" #lowerBound>
+        <div class="duration-flag" *ngIf="showDuration">
+          {{ durationConstraint.userAdjustedLowerBound | round : 1 }}
+        </div>
+        <div class="dvo1-flag">
+          {{ getUserLowerBoundString }}
+        </div>
+      </div>
+      <div class="upperBound" (mousedown)="dragBounding($event, false)" #upperBound>
+        <div class="duration-flag" *ngIf="showDuration">
+          {{ durationConstraint.userAdjustedUpperBound | round : 1 }}
+        </div>
+        <div class="dvo1-flag">
+          {{ getUserUpperBoundString }}
+        </div>
+      </div>
+    </div>
+    <div class="dvo1-duration current">
+      <div class="duration-flag" *ngIf="showDuration">
+        {{ durationConstraint.duration | round : 1 }}
+      </div>
+      <div class="dvo1-flag">
+        {{ formatMillion( durationConstraint.dv01 ) }}
+      </div>
+    </div>
+    <div class="dvo1-duration user-defined" [hidden]="!userDefinedAndOptimal" #userDefined>
+      <ng-container *ngIf="userDefinedAndOptimal">
+        <div class="duration-flag" *ngIf="showDuration">
+          {{ userDefinedAndOptimal.userDefinedDuration | round : 1 }}
+        </div>
+        <div class="dvo1-flag">
+          {{ formatMillion( userDefinedAndOptimal.userDefinedDv01 ) }}
+        </div>
+      </ng-container>
+    </div>
+    <div class="dvo1-duration optimal" [hidden]="!userDefinedAndOptimal" #optimal>
+      <ng-container *ngIf="userDefinedAndOptimal">
+        <div class="duration-flag" *ngIf="showDuration">
+          {{ userDefinedAndOptimal.optimalDuration | round : 1 }}
+        </div>
+        <div class="dvo1-flag">
+          {{ formatMillion( userDefinedAndOptimal.optimalDv01 ) }}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="row duration-constraint-editor">
+
+  <div class="offset-lg-2 offset-sm-2 col-lg-4 col-sm-4">
+    <md-input-container>
+      <input mdInput type="number" step="0.1" [placeholder]="'Lower Bound (USD mn)'" [ngModel]="getUserLowerBound" (ngModelChange)="updateUserLowerBound($event)" />
+      <md-hint>Default: {{ getLowerBound }}</md-hint>
+    </md-input-container>
+  </div>
+
+  <div class="col-lg-4 col-sm-4">
+    <md-input-container>
+      <input mdInput type="number" step="0.1" [placeholder]="'Upper Bound (USD mn)'" [ngModel]="getUserUpperBound" (ngModelChange)="updateUserUpperBound($event)" />
+      <md-hint>Default: {{ getUpperBound}}</md-hint>
+    </md-input-container>
+  </div>
+
+</div>

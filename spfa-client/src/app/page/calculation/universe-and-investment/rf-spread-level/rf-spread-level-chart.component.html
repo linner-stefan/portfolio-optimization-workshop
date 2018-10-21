@@ -1,0 +1,11 @@
+<div class="rf-spread-level-chart">
+
+  <md-select placeholder="Move views to:" (change)="onChangeLevel($event.value)" style="width: auto">
+    <md-option *ngFor="let levelOption of levelOptions" [value]="levelOption.id">{{ levelOption.name }}</md-option>
+  </md-select>
+
+<div class="rf-hierarchy-wrapper" *ngFor="let riskFactorGroup of riskFactorGroups">
+  <rf-spread-level-hierarchy [riskFactorGroup]="riskFactorGroup" [chartData]="chartData"></rf-spread-level-hierarchy>
+</div>
+
+</div>

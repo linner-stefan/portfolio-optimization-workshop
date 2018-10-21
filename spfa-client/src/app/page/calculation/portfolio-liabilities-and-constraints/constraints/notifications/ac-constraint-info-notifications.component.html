@@ -1,0 +1,39 @@
+<!-- amount of money invested, distributed to asset classes -->
+
+<div class="ac-constraint-notification-wrapper first">
+  <md-card class="ac-constraint-notification" [class.warning]="!isHundred">
+    <div class="ac-constraint-notification-inner">
+      <md-card-content>
+
+        <div>
+          <ng-container *ngIf="isHundred; else breachedNav">
+            <b>User defined portfolio is 100%, {{ chartData.navSum | billion }} invested</b>
+          </ng-container>
+
+          <ng-template #breachedNav>
+            <b>User defined portfolio is {{ chartData.allocationSum | perc }}, {{ (chartData.navSum *chartData.allocationSum) | billion }} of {{ chartData.navSum | billion }} invested</b>
+          </ng-template>
+        </div>
+
+        <div *ngIf="numAdditionalNotifications">
+          <u class="pointer" (click)="toggleAdditionoalNotifications()">{{ additionalNotifications ? 'Hide' : 'See' }} {{ numAdditionalNotifications }} other notifications</u>
+        </div>
+
+      </md-card-content>
+    </div>
+  </md-card>
+
+  <!-- list of cross asset class constraints -->
+
+  <ng-container *ngIf="additionalNotifications">
+
+    <md-card class="ac-constraint-notification no-image" *ngFor="let dualConstraint of dualConstraints">
+      <div class="ac-constraint-notification-inner">
+        <md-card-content>
+          <b>{{ dualConstraint.assetClassGroup1.name }} & {{ dualConstraint.assetClassGroup2.name }} - allocation constraint set from {{ dualConstraint.lowerBound | perc }} to {{ dualConstraint.upperBound | perc }}</b>
+        </md-card-content>
+      </div>
+    </md-card>
+
+  </ng-container>
+</div>

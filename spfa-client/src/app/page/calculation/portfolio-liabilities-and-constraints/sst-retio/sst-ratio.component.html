@@ -1,0 +1,83 @@
+<md-card class="collapsible-header" (click)="collapsedBody = !collapsedBody">
+  <md-card-content>
+
+    <div class="collapsible-header-body">
+      <div class="chart-header">Projected SST Ratio</div>
+      <div class="collapse-arrow">
+        <md-icon *ngIf="!collapsedBody">keyboard_arrow_up</md-icon>
+        <md-icon *ngIf="collapsedBody">keyboard_arrow_down</md-icon>
+      </div>
+    </div>
+
+  </md-card-content>
+</md-card>
+
+<md-card class="sst-slider-card">
+  <md-card-content>
+
+    <div class="sst-ratio-slider-wrapper">
+      <div class="sst-ratio-slider" #slider>
+        <div class="red-line line"></div>
+        <div class="yellow-line line"></div>
+        <div class="green-line line"></div>
+        <div class="handle" (mousedown)="handleDragStart($event)" #handle></div>
+        <div class="tracking-error-optimal">
+          <span style="margin-right: 5em">SST Ratio opt. {{getSstRatio}}%</span>
+          TE opt. {{ getTrackingErrorOptimal }}%
+        </div>
+      </div>
+    </div>
+
+  </md-card-content>
+</md-card>
+
+<md-card class="collapsible-body" [class.display-none]="collapsedBody">
+  <md-card-content>
+
+    <div class="sst-ratio-editor">
+      <div class="row">
+        <div class="col-lg-3">
+
+          <md-input-container>
+            <input mdInput type="number" step="1" [placeholder]="'SST Ratio (%)'" [ngModel]="getSstRatio" (ngModelChange)="changeSstRatio($event)" />
+          </md-input-container>
+
+        </div>
+        <div class="col-lg-3">
+
+          <md-input-container>
+            <input mdInput type="number" step="100" [placeholder]="'MVM (USD mn)'" [ngModel]="getMvm" (ngModelChange)="changeMvm($event)" />
+            <md-hint>Published: {{ sstRatio.mvm }}</md-hint>
+          </md-input-container>
+        </div>
+        <div class="col-lg-3">
+
+          <md-input-container>
+            <input mdInput type="number" step="100" [placeholder]="'RBC (USD mn)'" [ngModel]="getRbc" (ngModelChange)="changeRbc($event)" />
+            <md-hint>Published: {{ sstRatio.rbc }}</md-hint>
+          </md-input-container>
+
+          <md-input-container>
+            <input mdInput type="number" step="0.01" max="1" min="0" maxlength="10" [placeholder]="'FM diversification factor'" [ngModel]="getDiversificationFactor" (ngModelChange)="changeDiversificationFactor($event)" />
+          </md-input-container>
+
+        </div>
+        <div class="col-lg-3">
+
+          <md-input-container>
+            <input mdInput type="number" step="100" [placeholder]="'Shortfall (USD mn)'" [ngModel]="getShortfall" (ngModelChange)="changeShortfall($event)"  mdTooltip="Combined shortfall of financial market and insurance risks" />
+          </md-input-container>
+
+          <md-input-container>
+            <input mdInput type="number" step="100" [placeholder]="'Published: (USD mn)'" [ngModel]="getDefaultShortfall" (ngModelChange)="changeDefaultShortfall($event)"  mdTooltip="Combined shortfall of financial market and insurance risks" />
+          </md-input-container>
+
+        </div>
+      </div>
+    </div>
+
+  </md-card-content>
+</md-card>
+
+
+

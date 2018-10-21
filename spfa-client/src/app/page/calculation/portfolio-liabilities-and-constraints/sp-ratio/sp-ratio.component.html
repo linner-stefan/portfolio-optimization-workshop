@@ -1,0 +1,108 @@
+<md-card class="collapsible-header" (click)="collapsedBody = !collapsedBody" >
+  <md-card-content>
+
+    <div class="collapsible-header-body">
+      <div class="chart-header">S&P Analysis</div>
+      <div class="collapse-arrow">
+        <md-icon *ngIf="!collapsedBody">keyboard_arrow_up</md-icon>
+        <md-icon *ngIf="collapsedBody">keyboard_arrow_down</md-icon>
+      </div>
+    </div>
+
+  </md-card-content>
+</md-card>
+
+<md-card class="sp-slider-card">
+  <md-card-content>
+
+    <div class="sp-ratio-slider-wrapper" *ngIf="!error">
+      <div class="sp-ratio-slider" #slider>
+
+        <div class="lightgreen-line line"
+             *ngIf="minValue < 0"
+             [style.width.%]="( ( minWithZero(maxValue)  - minValue ) / (maxValue - minValue) ) * 100"></div>
+        <div class="pink-line line"
+             *ngIf="maxValue > 0"
+             [style.left.%]="( ( minWithZero(maxValue) - minValue ) / (maxValue - minValue) ) * 100"
+             [style.width.%]="( ( maxValue ) / (maxValue - minValue) ) * 100"></div>
+
+        <div class="handle" (mousedown)="handleDragStart($event)" #handle
+             [mdTooltip]="upperBoundBillions > maxValue || upperBoundBillions < minValue ? 'Handle outside of the bar range' : ''"
+             [style.opacity]="upperBoundBillions > maxValue || upperBoundBillions < minValue ? 0.5 : 1"></div>
+
+        <div class="datum-line datum-line-optimal"
+             #datumOptimal
+             *ngIf="getWithTolerance(standardChargeDeltaO) != getWithTolerance(standardChargeDeltaU)"
+             [style.left.%]="applyScale(standardChargeDeltaO * 1e-9) * 100 ">
+          <div class="datum-label">
+            <div class="datum-label-text"
+                 [mdTooltip]="'Delta Optimal to Current: ' + (standardChargeDeltaO | billion)">O</div>
+          </div>
+        </div>
+        <div class="datum-line datum-line-user-defined"
+             #datumUserDefined
+             [style.left.%]="applyScale(standardChargeDeltaU * 1e-9) * 100">
+          <div class="datum-label">
+            <div class="datum-label-text"
+                 *ngIf="getWithTolerance(standardChargeDeltaO) != getWithTolerance(standardChargeDeltaU)"
+                 [mdTooltip]="'Delta User-defined to Current: ' + (standardChargeDeltaU | billion)">U</div>
+            <div class="datum-label-text"
+                 *ngIf="getWithTolerance(standardChargeDeltaO)  == getWithTolerance(standardChargeDeltaU)"
+                 [mdTooltip]="'Delta User-defined and Optimal to Current: ' + (standardChargeDeltaU | billion)">U / O</div>
+          </div>
+        </div>
+
+        <ng-container *ngFor="let label of axisLabels">
+          <div class="axis-label" [style.left.%]="applyScale(label) * 100">
+            <div class="axis-label-text">{{label}}bn</div>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+    <div *ngIf="error">
+      Unable to calculate S&P Ratio
+    </div>
+
+  </md-card-content>
+</md-card>
+
+<md-card class="collapsible-body" [class.display-none]="collapsedBody">
+  <md-card-content>
+
+    <div class="sp-ratio-editor">
+      <div class="row">
+
+          <div class="col-xl-4">
+
+            <md-input-container>
+              <input mdInput type="number" step="0.01" [placeholder]="'Upper Bound (USD bn)'"
+                     [ngModel]="upperBoundBillions | round:2"
+                     (ngModelChange)="changeBound($event)"
+                     [disabled]="" />
+            </md-input-container>
+
+          </div>
+
+          <div class="col-xl-4">
+
+            <md-input-container mdTooltip="S&P Capital Charge Delta to User-defined (USD bn)">
+              <input mdInput placeholder="Delta to User-defined (USD bn)" [ngModel]="(standardChargeDeltaU * 1e-9) | round:2" disabled />
+            </md-input-container>
+
+          </div>
+          <div class="col-xl-4">
+
+            <md-input-container mdTooltip="S&P Capital Charge Delta to Optimal (USD bn)">
+              <input mdInput placeholder="Delta to Optimal (USD bn)" [ngModel]="(standardChargeDeltaO * 1e-9) | round:2" disabled />
+            </md-input-container>
+
+          </div>
+
+      </div>
+    </div>
+
+  </md-card-content>
+</md-card>
+

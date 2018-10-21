@@ -1,0 +1,142 @@
+@import "../../../../theme";
+
+.ac-constraint-hierarchy {
+
+  .ac-constraint-info {
+
+    padding-top: 1em;
+    margin-top: -1em;
+    padding-bottom: 1em;
+  }
+
+  .acg-first-level-wrapper {
+
+    .acg-first-level {
+
+      padding: 2.5em;
+      padding-bottom: 1.5em;
+      background-color:#ffffff;
+
+      &.expanded {
+
+        background: linear-gradient( to right, $blue-gradient-left, $blue-gradient-right);
+
+        .acg-name,
+        .acg-options {
+
+          color: #ffffff;
+        }
+      }
+
+      .acg-name {
+
+        font-size: 1.5em;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: $main-color;
+      }
+
+      .acg-options {
+
+        font-size: 1.5em;
+        text-align: right;
+      }
+    }
+  }
+
+  .acg-second-level-list {
+
+    width: 95%;
+    margin: 1em auto 0 auto;
+    position: relative;
+
+    .up {
+
+      width: 0;
+      height: 0;
+      border: 0.75em solid transparent;
+      border-bottom-color: $blue-gradient-right;
+      position: absolute;
+      top: -1.5em;
+      right: 2em;
+    }
+  }
+
+  .acg-second-level {
+
+    background-color:#ffffff;
+    color: #3CA1F9;
+
+    margin: 0 auto;
+    padding-left: 1em;
+    padding-bottom: 0.5em;
+
+    &.expanded {
+
+      background: linear-gradient( to right, $blue-gradient-left, $blue-gradient-right);
+
+      .acg-name,
+      .acg-options {
+
+        color: #ffffff;
+      }
+    }
+
+    .acg-name {
+
+      color: $main-color;
+      padding-left: 1em;
+      font-weight: bold;
+      font-size: 1.25em;
+    }
+
+    .acg-options {
+
+      font-size: 1.25em;
+      text-align: right;
+      color: $main-color;
+    }
+  }
+
+  .acg-third-level-list {
+
+    width: 95%;
+    margin: 1em auto;
+    position: relative;
+
+    .up {
+
+      width: 0;
+      height: 0;
+      border: 0.75em solid transparent;
+      border-bottom-color: $blue-gradient-right;
+      position: absolute;
+      top: -1.5em;
+      right: 2em;
+    }
+  }
+
+  .acg-third-level-wrapper {
+
+    .acg-third-level {
+
+      background-color:#ffffff;
+      color: $main-color;
+      margin: 0 auto;
+
+      padding-top: 1em;
+      padding-bottom: 1em;
+
+      .acg-name {
+
+        padding-left: 1em;
+        font-weight: bold;
+      }
+
+      .acg-options {
+
+        text-align: right;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<div class="notification decission">
+  <md-dialog-content>
+    <div class="title">{{ title }}</div>
+    <div class="question">{{ question }}</div>
+  </md-dialog-content>
+</div>
+<md-card-actions>
+  <button md-button md-dialog-close (click)="callOption( option )" *ngFor="let option of options">{{ option.label }}</button>
+</md-card-actions>

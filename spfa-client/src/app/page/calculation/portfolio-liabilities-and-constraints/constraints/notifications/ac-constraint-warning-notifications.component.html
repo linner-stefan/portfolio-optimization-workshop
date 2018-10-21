@@ -1,0 +1,22 @@
+<div class="ac-constraint-notification-wrapper" *ngIf="messages.length > 0">
+
+  <ng-container *ngFor="let message of messages; let i = index">
+    <md-card class="ac-constraint-notification warning" [class.no-image]="i > 0" *ngIf="i == 0 || additionalNotifications">
+      <div class="ac-constraint-notification-inner">
+        <md-card-content>
+          <div>
+            <span title="{{message.verbose}}"><b>{{ message.user }}</b></span>
+          </div>
+
+          <ng-container *ngIf="i == 0">
+            <div *ngIf="numAdditionalNotifications">
+              <u class="pointer" (click)="toggleAdditionoalNotifications()">{{ additionalNotifications ? 'Hide' : 'See' }} {{ numAdditionalNotifications }} other notifications</u>
+            </div>
+          </ng-container>
+
+        </md-card-content>
+      </div>
+    </md-card>
+  </ng-container>
+
+</div>

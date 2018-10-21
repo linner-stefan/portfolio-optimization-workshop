@@ -1,0 +1,15 @@
+<div md-dialog-title class="legal-entities-header"><span>ID {{ calculation.id }}</span> - {{ calculation.legalEntities.length }} Legal Entities</div>
+<md-dialog-content>
+
+  <!--<div class="legal-entities">
+    <span class="legal-entity" *ngFor="let legalEntity of calculation.legalEntities">{{ legalEntity.name }}</span>
+  </div>-->
+
+  <ul>
+    <li *ngFor="let legalEntity of calculation.legalEntities">{{ legalEntity.name }}</li>
+  </ul>
+
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button md-dialog-close>Close</button>
+</md-dialog-actions>

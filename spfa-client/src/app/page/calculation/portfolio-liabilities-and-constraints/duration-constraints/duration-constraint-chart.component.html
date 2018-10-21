@@ -1,0 +1,76 @@
+<div class="duration-constraint-chart">
+
+  <md-card class="duration-total">
+    <md-card-content>
+
+      <div class="name">Duration / DV01</div>
+
+    </md-card-content>
+  </md-card>
+  <md-card>
+    <md-card-content>
+
+      <duration-constraint [chartData]="chartData" [durationConstraint]="durationConstraints[0]"></duration-constraint>
+
+    </md-card-content>
+  </md-card>
+
+  <div class="duration-currency-list">
+    <div class="up"></div>
+
+    <ng-container *ngFor="let currencyConstraint of durationConstraints[0].subConstraints">
+
+      <md-card class="duration-currency pointer" [class.expanded]="!currencyConstraint.collapsed" (click)="collapse( currencyConstraint )">
+        <md-card-content>
+
+          <div class="name">{{ currencyConstraint.currency }}</div>
+
+        </md-card-content>
+      </md-card>
+      <md-card>
+        <md-card-content>
+
+          <duration-constraint [chartData]="chartData" [durationConstraint]="currencyConstraint"></duration-constraint>
+
+        </md-card-content>
+      </md-card>
+
+      <div class="duration-time-frame-list" *ngIf="!currencyConstraint.collapsed">
+        <div class="up"></div>
+
+        <md-card class="duration-time-frame" *ngFor="let timeFrameConstraint of currencyConstraint.subConstraints">
+          <md-card-content>
+
+            <div class="name">{{ timeFrameConstraint.timeFrame }}</div>
+
+            <div>
+              <duration-constraint-lowest [chartData]="chartData" [durationConstraint]="timeFrameConstraint"></duration-constraint-lowest>
+            </div>
+
+          </md-card-content>
+        </md-card>
+
+      </div>
+
+    </ng-container>
+
+  </div>
+
+  <div class="currency-sum-list">
+
+    <md-card class="currency-sum" *ngFor="let currency of currencies">
+      <md-card-content>
+
+        <div class="name">
+          {{ currency.currency }}
+        </div>
+
+        <div>
+          <currency [currency]="currency" [chartData]="chartData"></currency>
+        </div>
+
+      </md-card-content>
+    </md-card>
+
+  </div>
+</div>

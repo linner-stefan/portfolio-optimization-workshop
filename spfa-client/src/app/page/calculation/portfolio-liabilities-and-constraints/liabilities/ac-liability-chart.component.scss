@@ -1,0 +1,60 @@
+@import "../../../../theme";
+
+.ac-liability-chart {
+
+  .ac-liability-notification-wrapper {
+
+    margin-top: 1em;
+
+    &.first {
+
+      margin-top: 0;
+    }
+  }
+
+  .ac-liability-notification {
+
+    background-image: linear-gradient( to right, $blue-gradient-left, $blue-gradient-right);
+    padding: 0;
+
+    .ac-liability-notification-inner {
+
+      padding: 2.5em 0 1.5em 6em;
+
+      background-repeat: no-repeat;
+      background-position: 1em center;
+      background-size: 4em;
+      background-image: url('/assets/icons/info.svg');
+
+      color: #ffffff;
+    }
+
+    &.warning {
+
+      background-image: linear-gradient( to right, #FBB03B, #f9cc84 );
+
+      .ac-liability-notification-inner {
+
+        background-image: url('/assets/icons/warning.svg');
+      }
+    }
+
+    &.no-image {
+
+      .ac-liability-notification-inner {
+
+        background-image: none;
+      }
+    }
+  }
+}
+
+.ac-liability-hierarchy-wrapper {
+
+  margin-top: 1em;
+}
+
+.ac-liability-hierarchy-wrapper:first-child {
+
+  margin-top: 0;
+}

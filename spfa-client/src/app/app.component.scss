@@ -1,0 +1,88 @@
+@import "theme";
+
+body {
+
+  margin:0;
+  padding:0;
+  padding-top: 4em;
+
+  background-color: $body-background-color;
+  font-family: SansOT;
+
+  height: 100%;
+  width: 100%;
+}
+
+html {
+
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.spa-header {
+
+  z-index: 1000;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  height: 4em;
+  width: 100%;
+
+  .title {
+
+    font-size: 1.8125em;
+    font-family: "SansOT", sans-serif;
+    font-weight: 300;
+    color: #627D77;
+
+    margin-left: 7.5em;
+    padding-top: 0.52em;
+
+    span {
+
+      outline: 0;
+    }
+  }
+
+  .user {
+
+    float: right;
+
+    margin-right: 2em;
+    margin-top: 1em;
+
+    .avatar {
+
+      display: inline-block;
+
+      float: right;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      position: relative;
+      width: 52px;
+      height: 52px;
+      top: -10px;
+      overflow: hidden;
+
+      img {
+        height: auto;
+        width: 52px;
+      }
+    }
+
+    .name {
+
+      display: inline-block;
+      margin-top: 8px;
+      margin-right: 10px;
+
+      color: $lake;
+    }
+  }
+}

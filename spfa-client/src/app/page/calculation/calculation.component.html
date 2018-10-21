@@ -1,0 +1,28 @@
+<div class="calculation-tabs-wrapper">
+  <div class="calculation-tabs-strip">
+    <div class="calculation-tabs">
+      <div class="calculation-tab pointer" [routerLink]="['portfolio-liabilities-and-constraints']" [routerLinkActive]="'active'">
+        <div class="calculation-tab-icon portfolio"></div>
+        <div class="calculation-tab-label">Portfolio</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="calculation-panel-wrapper">
+  <div class="calculation-panel">
+
+    <ul class="calculation-options">
+      <li mdTooltip="Apply changes, recalculate portfolio and save calculation" class="calculation-option pointer apply" (click)="apply()" [class.disabled]="calculation.readOnly || !changes" [class.forbidden]="calculation.readOnly || !changes"><span>Apply</span></li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="calculation-screen">
+
+  <div class="outlet-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

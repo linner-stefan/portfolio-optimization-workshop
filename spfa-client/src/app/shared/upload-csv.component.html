@@ -1,0 +1,41 @@
+<md-card [style.margin-top.em]="1">
+  <md-card-content>
+    <div class="row">
+      <div class="col-lg-12">
+        <div>
+          <h3 class="navbar-brand">{{title}}</h3>
+        </div>
+        <div class="chart-controls">
+          <div *ngIf="supportsDefaultData" class="chart-control col-lg-6">
+            <span class="switch-off-text" (click)="slideToggle.checked = false">Default</span><!--
+          -->
+            <md-slide-toggle #slideToggle color="primary" (change)="onChangeType($event.checked)">
+              <span mdTooltip="Default value is uploaded only by admin" class="switch-on-text">User defined</span>
+            </md-slide-toggle>
+          </div>
+
+          <div [hidden]="!uploadHistory || !lastUploaded" class="chart-control col-lg-6">
+            Last time CSV uploaded: {{this.lastUploaded | date: 'dd.MM.yyyy HH:mm:ss'}}
+          </div>
+
+        </div>
+
+        <div class="col-md-12" *ngIf="!useDefaultData || (useDefaultData && isAdmin)">
+          <div ng2FileDrop
+               [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+               (fileOver)="fileOverBase($event)"
+               [uploader]="uploader"
+               class="well my-drop-zone">
+            Drop CSV file here<br>
+          </div>
+
+          <div style="margin-top: 20px">
+            <div class="row">
+              <input type="file" ng2FileSelect [uploader]="uploader"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>

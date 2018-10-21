@@ -1,0 +1,18 @@
+<md-card>
+  <md-card-content>
+
+    <div class="chart-header">Mahalanobis Distance</div>
+
+    <div class="d3-chart" #chart>
+
+      <div class="loader" [style.display]="dynamicStyles.loaderDisplay">
+        Please select two risk factors below to visualise the Mahalanobis distance
+      </div>
+
+      <div class="loader-matlab" [style.display]="dynamicStyles.loaderMatlabDisplay">
+        Calculating the Mahalanobis distance...
+      </div>
+
+    </div>
+  </md-card-content>
+</md-card>
