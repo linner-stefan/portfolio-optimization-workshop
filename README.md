@@ -6,7 +6,7 @@ please follow the steps below in order to prepare for the workshop.
 The core functionality will be implemented in Java backend module **spfa-server**. For a visualisation we need also Angular frontend module **spfa-client**.
 
 ### Workshop slides ###
-
+[Capco Portfolio Optimization Workshop - NoCH Brno 2018-10.pdf](https://github.com/linner-stefan/portfolio-optimization-workshop/blob/master/Capco%20Portfolio%20Optimization%20Workshop%20-%20NoCH%20Brno%202018-10.pdf)
 
 ### Git installation ###
 Before we start, we need to install git client on a machine in order to checkout the
