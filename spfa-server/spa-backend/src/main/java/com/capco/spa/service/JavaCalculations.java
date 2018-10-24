@@ -5,6 +5,7 @@ import com.capco.spa.service.exception.SPAInternalApplicationException;
 import com.capco.spa.service.matlab.data.PortfolioOptimizationOutput;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 import org.ojalgo.array.DenseArray;
 import org.ojalgo.array.Primitive64Array;
@@ -206,13 +207,17 @@ public class JavaCalculations {
 
 
     private double portfolioReturn(double[] meanReturns, double[] weights) {
-        throw new SPAInternalApplicationException("Portfolio return formula is missing");
+        return this.multiplyVectorByVector( meanReturns, weights);
     }
 
     private double portfolioRisk(double[][] cov, double[] weights) {
-        throw new SPAInternalApplicationException("Portfolio risk formula is missing");
+        INDArray weightsNd = Nd4j.create(weights);
+        INDArray covNd = Nd4j.create(cov);
 
+        double variance = weightsNd.mmul(covNd).mmul(weightsNd.transpose()).toDoubleVector()[0];
+        return Math.sqrt( variance * 100 ) * 0.01;
     }
+
 
     private double[][] concatRows(double[][] top, double[] bottom) {
         return Nd4j.concat(0, Nd4j.create(top), Nd4j.create(bottom) ).toDoubleMatrix();
