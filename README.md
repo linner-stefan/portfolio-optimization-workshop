@@ -5,6 +5,9 @@ please follow the steps below in order to prepare for the workshop.
 
 The core functionality will be implemented in Java backend module **spfa-server**. For a visualisation we need also Angular frontend module **spfa-client**.
 
+### Workshop slides ###
+
+
 ### Git installation ###
 Before we start, we need to install git client on a machine in order to checkout the
 source code of the application. Please, download the client from the following link:

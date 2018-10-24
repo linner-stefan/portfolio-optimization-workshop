@@ -140,9 +140,27 @@ public class CalculationService {
         return acReturns.toArray(new double[acReturns.size()][]);
     }
 
+
+
     private void portfolioOptimization(Calculation calculation, InputOutputBundle ioBundle ) throws Exception{
 
-        PortfolioOptimizationOutput portfolioOptimizationOutput = javaCalculations.portfolioOptimization( new double[0][], ioBundle.getAllocConstraintIneqCoefMat(), ioBundle.getAllocConstraintIneqConstVec());
+        double[][] returnsRandom;
+        {
+            int assets = 58;
+            int observations = 1000;
+            returnsRandom = new double[assets][];
+            Random random = new Random();
+            for (int i = 0; i < assets; i++) {
+                double[] returns = new double[observations];
+                double assetCoef = random.nextDouble() + 1;
+                for (int j = 0; j < observations; j++) {
+                    returns[j] = (random.nextGaussian() + 0.05) * assetCoef;
+                }
+                returnsRandom[i] = returns;
+            }
+        }
+
+        PortfolioOptimizationOutput portfolioOptimizationOutput = javaCalculations.portfolioOptimization( returnsRandom, ioBundle.getAllocConstraintIneqCoefMat(), ioBundle.getAllocConstraintIneqConstVec());
 
         portfolioOptimizationOutput.setEfficientPortfoliosIsMat( portfolioOptimizationOutput.getEfficientPortfoliosMat() );
         portfolioOptimizationOutput.setEfficientPortfoliosMarketMat( portfolioOptimizationOutput.getEfficientPortfoliosMat() );

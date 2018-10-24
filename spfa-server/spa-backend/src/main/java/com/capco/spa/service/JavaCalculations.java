@@ -23,7 +23,6 @@ import org.ojalgo.optimisation.convex.ConvexSolver;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * Class encapsulates simple java calculations using math library ojAlgo.
@@ -143,23 +142,15 @@ public class JavaCalculations {
         return diagonalMatrix;
     }
 
-    double[][] returnsRandom;
-    {
-        int assets = 58;
-        int observations = 1000;
-        returnsRandom = new double[assets][];
-        Random random = new Random();
-        for (int i = 0; i < assets; i++) {
-            double[] returns = new double[observations];
-            double assetCoef = random.nextDouble() + 1;
-            for (int j = 0; j < observations; j++) {
-                returns[j] = (random.nextGaussian() + 0.05) * assetCoef;
-            }
-            returnsRandom[i] = returns;
-        }
-    }
-
-    public PortfolioOptimizationOutput portfolioOptimization( double[][] acReturns,
+    /**
+     * Calculates efficient portfolios using Markovitz portfolio optimization.
+     *
+     * @param historicReturns - historic asset class returns matrix, rows are assets, columns are returns
+     * @param allocConstraintIneqCoefMat - lower/upper bound coefficients
+     * @param allocConstraintIneqConstVec - lower/upper bound constants
+     * @return efficient portfolio weights with calculated risk and returns
+     */
+    public PortfolioOptimizationOutput portfolioOptimization( double[][] historicReturns,
                                                               double[][] allocConstraintIneqCoefMat,
                                                               double[] allocConstraintIneqConstVec ) {
 
@@ -168,11 +159,11 @@ public class JavaCalculations {
                     "will be finished as a part of the workshop");
         }
 
-        int nAssets = returnsRandom.length;
+        int nAssets = historicReturns.length;
         int nPortfolios = PortfolioLabel.values().length - 2;
 
-        double[] meanReturns = new double[0];
         double[][] cov = new double[0][];
+        double[] meanReturns = new double[0];
         double[] f = new double[0];
         double[][] A = new double[0][];
         double[] b = new double[0];
@@ -199,9 +190,9 @@ public class JavaCalculations {
 
         // Efficient Portfolios
 
-        // set intermediate efReturns ...
+        // 1) interpolate missing efReturns ...
 
-        // call solveConvex() 'nPortfolios - 2' times for every intermediate efReturn,
+        // 2) call solveConvex() 'nPortfolios - 2' times for every intermediate efReturn,
         // with additional equality constraint with meanReturns as coefficients and efReturn as a constant
 
 
@@ -214,10 +205,6 @@ public class JavaCalculations {
     }
 
 
-    private double[][] concatRows(double[][] top, double[] bottom) {
-        return Nd4j.concat(0, Nd4j.create(top), Nd4j.create(bottom) ).toDoubleMatrix();
-    }
-
     private double portfolioReturn(double[] meanReturns, double[] weights) {
         throw new SPAInternalApplicationException("Portfolio return formula is missing");
     }
@@ -226,6 +213,11 @@ public class JavaCalculations {
         throw new SPAInternalApplicationException("Portfolio risk formula is missing");
 
     }
+
+    private double[][] concatRows(double[][] top, double[] bottom) {
+        return Nd4j.concat(0, Nd4j.create(top), Nd4j.create(bottom) ).toDoubleMatrix();
+    }
+
 
     private double[] meanRow( double[][] matrix ){
         double[] mean = new double[matrix.length];
