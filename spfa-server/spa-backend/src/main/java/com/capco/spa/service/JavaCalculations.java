@@ -1,11 +1,12 @@
 package com.capco.spa.service;
 
 import com.capco.spa.jpa.entity.PortfolioLabel;
-import com.capco.spa.service.exception.SPAInternalApplicationException;
 import com.capco.spa.service.matlab.data.PortfolioOptimizationOutput;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.dimensionalityreduction.PCA;
 import org.nd4j.linalg.factory.Nd4j;
 import org.ojalgo.array.DenseArray;
 import org.ojalgo.array.Primitive64Array;
@@ -155,21 +156,16 @@ public class JavaCalculations {
                                                               double[][] allocConstraintIneqCoefMat,
                                                               double[] allocConstraintIneqConstVec ) {
 
-        if ( true ) {
-            throw new SPAInternalApplicationException("Portfolio optimization implementation " +
-                    "will be finished as a part of the workshop");
-        }
-
         int nAssets = historicReturns.length;
         int nPortfolios = PortfolioLabel.values().length - 2;
 
-        double[][] cov = new double[0][];
-        double[] meanReturns = new double[0];
-        double[] f = new double[0];
-        double[][] A = new double[0][];
-        double[] b = new double[0];
-        double[][] Aeq = new double[0][];
-        double[] beq = new double[0];
+        double[][] cov = PCA.covarianceMatrix( Nd4j.create( historicReturns ).transpose() )[0].toDoubleMatrix();
+        double[] meanReturns = meanRow( historicReturns );
+        double[] f = Nd4j.create( meanReturns ).neg().toDoubleVector();
+        double[][] A = Nd4j.concat( 0, Nd4j.eye( nAssets ), Nd4j.eye( nAssets ).neg() ).toDoubleMatrix();
+        double[] b = Nd4j.concat( 0, Nd4j.ones( nAssets, 1 ), Nd4j.zeros( nAssets, 1 ) ).toDoubleVector();
+        double[][] Aeq = new double[][]{ Nd4j.ones( 1, nAssets ).toDoubleVector() };
+        double[] beq = new double[]{ 1 };
 
         double[] efReturns = new double[nPortfolios];
         double[][] efPortfolios = new double[nPortfolios][];
@@ -190,12 +186,21 @@ public class JavaCalculations {
         efRisks[ nPortfolios - 1 ] = portfolioRisk(cov, weightsMaxReturn);
 
         // Efficient Portfolios
+        double stepSize = (returnMax - returnMinRisk) / (nPortfolios - 1);
+        for (int i = 1; i < nPortfolios - 1; i++) {
+            efReturns[i] = returnMinRisk + stepSize * i;
+        }
 
-        // 1) interpolate missing efReturns ...
+        double[][] efAeq = concatRows(Aeq, meanReturns);
+        for (int i = 1; i < nPortfolios - 1; i++) {
 
-        // 2) call solveConvex() 'nPortfolios - 2' times for every intermediate efReturn,
-        // with additional equality constraint with meanReturns as coefficients and efReturn as a constant
+            double efReturn = efReturns[i];
+            double[] efBeq = ArrayUtils.add( beq, efReturn );
 
+            double[] efWeights = this.solveConvex( cov, f, A, b, efAeq, efBeq );
+            efPortfolios[i] = efWeights;
+            efRisks[i] = portfolioRisk(cov, efWeights);
+        }
 
         PortfolioOptimizationOutput output = new PortfolioOptimizationOutput();
         output.setEfficientPortfoliosMat( efPortfolios );
@@ -207,17 +212,16 @@ public class JavaCalculations {
 
 
     private double portfolioReturn(double[] meanReturns, double[] weights) {
-        return this.multiplyVectorByVector( meanReturns, weights);
+        return Nd4j.create( meanReturns ).mmul( Nd4j.create(weights).transpose() ).toDoubleVector()[0];
     }
 
     private double portfolioRisk(double[][] cov, double[] weights) {
-        INDArray weightsNd = Nd4j.create(weights);
-        INDArray covNd = Nd4j.create(cov);
-
-        double variance = weightsNd.mmul(covNd).mmul(weightsNd.transpose()).toDoubleVector()[0];
+        INDArray weightsNd = Nd4j.create( weights );
+        double variance = weightsNd.mmul( Nd4j.create( cov ) )
+                .mmul( weightsNd.transpose() )
+                .toDoubleVector()[0];
         return Math.sqrt( variance * 100 ) * 0.01;
     }
-
 
     private double[][] concatRows(double[][] top, double[] bottom) {
         return Nd4j.concat(0, Nd4j.create(top), Nd4j.create(bottom) ).toDoubleMatrix();
